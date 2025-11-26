@@ -1,4 +1,4 @@
-package Sesi.senai.Projeto.Model;
+package Sesi.senai.Projeto.model;
 
 
 import jakarta.persistence.*;
