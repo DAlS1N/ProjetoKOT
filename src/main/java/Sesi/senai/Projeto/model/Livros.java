@@ -10,6 +10,7 @@ import lombok.*;
 @Data
 @Getter
 @Setter
+@ToString
 public class Livros {
 
     @Id

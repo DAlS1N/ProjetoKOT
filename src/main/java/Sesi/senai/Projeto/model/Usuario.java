@@ -13,6 +13,7 @@ import java.util.List;
 @Data
 @Getter
 @Setter
+@ToString
 public class Usuario {
 
     @Id

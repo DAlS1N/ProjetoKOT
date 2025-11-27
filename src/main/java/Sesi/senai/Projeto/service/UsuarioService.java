@@ -15,11 +15,12 @@ public class UsuarioService {
 
     //Criar (POST)
     public Usuario criarUsuario(Usuario usuario) {
+        System.out.println("Criando usuario");
         return usuarioRepository.save(usuario);
     }
 
     //Listar todos (GET)
-    public List<Usuario> criarUsuarios() {
+    public List<Usuario> findAll() {
         return usuarioRepository.findAll();
     }
 
@@ -37,6 +38,7 @@ public class UsuarioService {
                     usuarioAntigo.setEmail(usuarioNovo.getEmail());
                     usuarioAntigo.setSenha(usuarioNovo.getSenha());
 
+                    System.out.println("Usuario Atualizado com sucesso!");
                     return usuarioRepository.save(usuarioAntigo);
                 })
                 .orElse(null);
@@ -46,7 +48,9 @@ public class UsuarioService {
 
     //Deletar (DELETE /{id})
     public void deletarUsuario(int id) {
+
          usuarioRepository.deleteById(id);
+        System.out.println("Usuario Deletado com sucesso!");
     }
 
 
