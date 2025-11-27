@@ -33,6 +33,7 @@ public class Usuario {
     public List<Livros> livros;
 
     @Column(nullable = false)
-    public boolean isAdmin;
+    private String role;  // USER ou ADMIN
+
 
 }

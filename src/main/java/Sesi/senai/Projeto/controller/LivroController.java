@@ -16,12 +16,12 @@ public class LivroController {
     @Autowired
     private LivrosService service;
 
-    @PostMapping("criarUsuario")
+    @PostMapping("criarLivro")
     public Livros criarLivro(@RequestBody Livros livros) {
         return service.CriarLivros(livros);
     }
 
-    @GetMapping("user/{id}")
+    @GetMapping("livro/{id}")
     public Livros getLivro(@PathVariable int id) {
         return service.BuscarLivro(id);
     }
@@ -31,12 +31,12 @@ public class LivroController {
         return service.ListarLivros();
     }
 
-    @PutMapping("atualizar/{id}")
+    @PutMapping("atualizarlivros/{id}")
     public Livros atualizarLivro(@PathVariable int id, @RequestBody Livros livros) {
         return service.AtualizarLivro(livros, id);
     }
 
-    @DeleteMapping("deletar/{id}")
+    @DeleteMapping("deletarlivro/{id}")
     public void deletarLivro(@PathVariable int id) {
         service.ExcluirLivro(id);
     }
