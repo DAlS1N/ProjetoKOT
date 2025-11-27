@@ -32,4 +32,7 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     public List<Livros> livros;
 
+    @Column(nullable = false)
+    public boolean isAdmin;
+
 }
