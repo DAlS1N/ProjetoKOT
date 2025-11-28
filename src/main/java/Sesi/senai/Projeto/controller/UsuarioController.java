@@ -17,7 +17,6 @@ public class UsuarioController {
     @Autowired
     private UsuarioService service;
 
-
     @PostMapping("criarUsuario")
     public Usuario criarUsuario(@RequestBody Usuario usuario) {
         return service.criarUsuario(usuario);
