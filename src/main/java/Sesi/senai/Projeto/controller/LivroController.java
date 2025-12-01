@@ -1,15 +1,13 @@
 package Sesi.senai.Projeto.controller;
 
 import Sesi.senai.Projeto.model.Livros;
-import Sesi.senai.Projeto.model.Usuario;
 import Sesi.senai.Projeto.service.LivrosService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/Biblioteca/livros/")
 public class LivroController {
 

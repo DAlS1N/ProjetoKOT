@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/Biblioteca/usuario/")
 public class UsuarioController {
 
