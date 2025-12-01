@@ -1,6 +1,8 @@
 package Sesi.senai.Projeto.service;
 
+import Sesi.senai.Projeto.model.Livros;
 import Sesi.senai.Projeto.model.Usuario;
+import Sesi.senai.Projeto.repository.LivrosRepository;
 import Sesi.senai.Projeto.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,23 +15,22 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private LivrosRepository livrosRepository;
+
     //Criar (POST)
     public Usuario criarUsuario(Usuario usuario) {
-        System.out.println("Criando usuario");
         return usuarioRepository.save(usuario);
     }
 
-    //Listar todos (GET)
     public List<Usuario> findAll() {
         return usuarioRepository.findAll();
     }
 
-    //Buscar por id (GET /{id})
     public Usuario findByid(int id) {
         return usuarioRepository.findById(id).get();
     }
 
-    //Atualizar (PUT /{id})
     public Usuario AtualizarUsuario(Usuario usuarioNovo, int id) {
 
         return usuarioRepository.findById(id)
@@ -38,24 +39,29 @@ public class UsuarioService {
                     usuarioAntigo.setEmail(usuarioNovo.getEmail());
                     usuarioAntigo.setSenha(usuarioNovo.getSenha());
 
-                    System.out.println("Usuario Atualizado com sucesso!");
                     return usuarioRepository.save(usuarioAntigo);
                 })
                 .orElse(null);
     }
 
-
-
-    //Deletar (DELETE /{id})
     public void deletarUsuario(int id) {
-
-         usuarioRepository.deleteById(id);
-        System.out.println("Usuario Deletado com sucesso!");
+        usuarioRepository.deleteById(id);
     }
 
 
+    public Usuario adicionarLivroExistente(Integer idUsuario, Integer idLivro) {
 
+        Usuario usuario = usuarioRepository.findById(idUsuario)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
+        Livros livro = livrosRepository.findById(idLivro)
+                .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
 
+        // Associa o livro ao usuário
+        livro.setUsuario(usuario);
+        livrosRepository.save(livro);
 
+        return usuario; // retorna o usuário com o livro vinculado
+    }
 }
+

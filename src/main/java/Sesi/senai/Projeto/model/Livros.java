@@ -1,5 +1,6 @@
 package Sesi.senai.Projeto.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,9 +16,9 @@ public class Livros {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String titulo;
 
     @Column(nullable = false)
@@ -31,6 +32,7 @@ public class Livros {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
+    @JsonIgnore
     public Usuario usuario;
 
 }

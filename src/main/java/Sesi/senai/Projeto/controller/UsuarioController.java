@@ -1,5 +1,6 @@
 package Sesi.senai.Projeto.controller;
 
+import Sesi.senai.Projeto.model.Livros;
 import Sesi.senai.Projeto.model.Usuario;
 import Sesi.senai.Projeto.repository.UsuarioRepository;
 import Sesi.senai.Projeto.service.UsuarioService;
@@ -42,4 +43,11 @@ public class UsuarioController {
         service.deletarUsuario(id);
     }
 
+    @PostMapping("{idUsuario}/addLivro/{idLivro}")
+    public Usuario adicionarLivroAoUsuario(
+            @PathVariable Integer idUsuario,
+            @PathVariable Integer idLivro) {
+
+        return service.adicionarLivroExistente(idUsuario, idLivro);
+    }
 }
