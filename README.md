@@ -85,34 +85,34 @@ Body:
 }
 ```
 
-#### 📄 Listar Usuários  
+#### Listar Usuários  
 `GET /usuarios`
 
-#### 🔍 Buscar Usuário por ID  
+#### Buscar Usuário por ID  
 `GET /usuarios/{id}`
 
-#### ✏️ Atualizar Usuário  
+#### Atualizar Usuário  
 `PUT /usuarios/{id}`
 
-#### ❌ Deletar Usuário  
+#### Deletar Usuário  
 `DELETE /usuarios/{id}`
 
 ---
 
-## 🛠️ Como Rodar o Projeto
+## Como Rodar o Projeto
 
-### 1️⃣ Clonar o repositório
+### Clonar o repositório
 ```
 git clone https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
 ```
 
-### 2️⃣ Configurar Banco de Dados  
+### Configurar Banco de Dados  
 Criar um banco no MySQL:
 ```
 CREATE DATABASE biblioteca;
 ```
 
-### 3️⃣ Configurar o `application.properties`
+### Configurar o `application.properties`
 ```
 spring.datasource.url=jdbc:mysql://localhost:3306/biblioteca
 spring.datasource.username=root
@@ -120,7 +120,7 @@ spring.datasource.password=SUASENHA
 spring.jpa.hibernate.ddl-auto=update
 ```
 
-### 4️⃣ Rodar o projeto
+### Rodar o projeto
 Via IDE ou:
 ```
 mvn spring-boot:run
@@ -128,13 +128,9 @@ mvn spring-boot:run
 
 ---
 
-## ✔️ Status do Projeto
+## Status do Projeto
 100% funcional — pronto para testes no Postman!
 
----
-
-## 👨‍🏫 Autor
-Projeto desenvolvido para estudo da arquitetura REST com Spring Boot.
 
 
 
