@@ -1,36 +1,27 @@
-API REST – Nome da API
-Spring Boot + PostgreSQL (Supabase)
+### PROJETO POO 
 
 Este projeto implementa uma API REST completa, com CRUD, persistência no Supabase (PostgreSQL) e organização profissional de código.
 Atende integralmente aos requisitos do trabalho da disciplina.
 
-🎯 Objetivo do Projeto
+### Objetivo do Projeto
 
 Criar uma API REST que permita realizar operações de CRUD sobre uma entidade principal escolhida pelo grupo (ex.: Livro, Produto, Animal, Cliente, etc.), utilizando:
 
-Java 17
-
-Spring Boot
-
-Supabase (PostgreSQL)
-
-Spring Web
-
-Spring Data JPA
+- Java 17
+- Spring Boot
+- Supabase (PostgreSQL)
+- Spring Web
+- Spring Data JPA
 
 Este README explica como rodar, como usar, e como o código funciona, camada por camada.
 
-👥 Integrantes do Grupo
+### Integrantes do Grupo
 Nome	Contribuições (exemplo)
-Aluno 1	Model, Repository, integração Supabase
-Aluno 2	Controllers e documentação dos endpoints
-Aluno 3	Services e regras de negócio
-Aluno 4	Estrutura do projeto, testes, revisão
-Aluno 5	Configuração do Maven/Swagger
+Kauã:	Model, Repository, integração Supabase, estrutura do projeto, testes, revisão
+Otávio:	README.md e documentação dos endpoints
+Thiago:	Services e regras de negócio e configuração do Maven/Swagger
 
-Substituir pelas contribuições reais do grupo.
-
-🛠️ Tecnologias Usadas
+### Tecnologias Usadas
 
 Spring Boot — cria a API e gerencia todo o servidor
 
@@ -43,8 +34,7 @@ PostgreSQL (Supabase) — banco de dados externo onde ficam os registros
 Maven — gerenciador de dependências e execução
 
 Java 17 — versão mínima exigida para o projeto
-
-📁 Estrutura do Projeto (explicada)
+### Estrutura do Projeto (explicada)
 src/main/java/.../projeto
  ├── controller/
  ├── service/
@@ -52,7 +42,7 @@ src/main/java/.../projeto
  ├── model/
  └── ProjetoApplication.java
 
-✔ controller → “onde ficam os endpoints”
+### controller → “onde ficam os endpoints”
 
 É a camada responsável por receber requisições HTTP.
 Exemplo:
@@ -63,7 +53,7 @@ public List<Livro> listarTodos() { ... }
 
 Ela não contém regra de negócio, apenas chama o service.
 
-✔ service → “regra de negócio”
+### service → “regra de negócio”
 
 Aqui ficam as validações e decisões da aplicação.
 Exemplo:
@@ -77,7 +67,7 @@ public Livro atualizar(Long id, Livro novo){
 
 Service não sabe nada sobre HTTP, apenas lógica.
 
-✔ repository → “conexão com o banco”
+### repository → “conexão com o banco”
 
 Faz acesso direto ao banco usando JPA.
 
@@ -94,7 +84,7 @@ save()
 
 deleteById()
 
-✔ model → “entidade da tabela”
+### model → “entidade da tabela”
 
 Representa a tabela do banco Supabase.
 
@@ -111,7 +101,7 @@ public class Livro {
 
 Cada atributo vira uma coluna no PostgreSQL.
 
-✔ ProjetoApplication
+### ProjetoApplication
 
 Classe que inicializa o servidor Spring Boot:
 
@@ -122,7 +112,7 @@ public class ProjetoApplication {
     }
 }
 
-🗃️ Banco de Dados — Supabase
+### Banco de Dados — Supabase
 Como configurar o application.properties:
 spring.datasource.url=jdbc:postgresql://db.<ID>.supabase.co:5432/postgres
 spring.datasource.username=postgres
@@ -144,8 +134,8 @@ show-sql=true → mostra no console os comandos SQL executados
 
 dialect → informa que é PostgreSQL
 
-🚀 Como Rodar o Projeto
-1️⃣ Clonar o repositório
+### Como Rodar o Projeto
+Clonar o repositório
 git clone https://github.com/grupo/projeto-api.git
 
 2️⃣ Ajustar credenciais do Supabase
