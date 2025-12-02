@@ -3,6 +3,8 @@ package Sesi.senai.Projeto.service;
 import Sesi.senai.Projeto.model.Livros;
 import Sesi.senai.Projeto.repository.LivrosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,6 +51,9 @@ public class LivrosService {
         livrosRepository.deleteById(id);
     }
 
+    public Page<Livros> listarPaginado(Pageable pageable) {
+        return livrosRepository.findAll(pageable);
+    }
 
 
 }

@@ -5,6 +5,8 @@ import Sesi.senai.Projeto.model.Usuario;
 import Sesi.senai.Projeto.repository.LivrosRepository;
 import Sesi.senai.Projeto.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -57,11 +59,21 @@ public class UsuarioService {
         Livros livro = livrosRepository.findById(idLivro)
                 .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
 
-        // Associa o livro ao usuário
+
         livro.setUsuario(usuario);
         livrosRepository.save(livro);
 
-        return usuario; // retorna o usuário com o livro vinculado
+        return usuario;
     }
+
+    public Usuario buscarPorEmail(String email) {
+        return usuarioRepository.findByEmail(email);
+    }
+
+
+    public Page<Usuario> listarPaginado(Pageable pageable) {
+        return usuarioRepository.findAll(pageable);
+    }
+
 }
 
