@@ -215,9 +215,9 @@ No Linux/Mac:
 
 API estará disponível em:
 
-👉 http://localhost:8080
+👉 http://localhost:9090
 
-👉 http://localhost:8080/swagger-ui/index.html
+👉 http://localhost:9090/swagger-ui/index.html
  (Swagger)
 
 📑 7. Endpoints Documentados
@@ -281,8 +281,6 @@ Associa um livro existente ao usuário informado.
 
 👥 9. Integrantes do Grupo
 Nome	Função no Projeto
-Integrante 1	Controller, organização do Git
-Integrante 2	Entidades + Repositórios
-Integrante 3	Services + lógica de negócio
-Integrante 4	Documentação + Testes
-Integrante 5 (opcional)	Configuração Supabase
+Kauã	Controller, organização do Git, services + lógica de negócio, configuração Supabase
+Otávio	Entidades + Repositórios
+Thiago 3	Documentação + Testes
