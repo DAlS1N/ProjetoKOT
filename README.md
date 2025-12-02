@@ -238,7 +238,8 @@ Exemplo:
 {
   "nome": "João",
   "email": "joao@mail.com",
-  "senha": "1234"
+  "senha": "1234",
+  "role": "admin"
 }
 
 PUT /usuario/{id}
