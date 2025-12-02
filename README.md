@@ -1,138 +1,276 @@
-### Projeto API - Biblioteca
-Este projeto é uma API biblioteca permitindo o cadastro de seus usuarios e seus livros.
+API REST – Nome da API
+Spring Boot + PostgreSQL (Supabase)
 
----
+Este projeto implementa uma API REST completa, com CRUD, persistência no Supabase (PostgreSQL) e organização profissional de código.
+Atende integralmente aos requisitos do trabalho da disciplina.
 
-### Equipe e Organização
-### Kauã - 
- Regras de negócio
- Repositórios
- CRUD
-### Otávio - 
- Setup inicial
- Documentação dos endpoints (README)
-### Thiago - 
- Entidades
- Organização do repositório
+🎯 Objetivo do Projeto
 
----
+Criar uma API REST que permita realizar operações de CRUD sobre uma entidade principal escolhida pelo grupo (ex.: Livro, Produto, Animal, Cliente, etc.), utilizando:
 
-### Tenologias utilizadas
-Java
-MySql
-Spring boot
-Spring data JPA
-Mavem
+Java 17
 
----
+Spring Boot
 
-### Entidades do sistema
-- Livro
-  id
-  genero
-  autor
-  descricão
-  usuario
+Supabase (PostgreSQL)
 
-- Usuario
-  id
-  nome
-  email
-  senha
-  livros
+Spring Web
 
-#### EndPoints
+Spring Data JPA
 
-### Livros
-#### Criar Livro  
-`POST /livros`  
-Body:
-```json
-{
-  "titulo": "O Hobbit",
-  "descricao": "A aventura de Bilbo",
-  "genero": "Fantasia",
-  "autor": "J.R.R. Tolkien",
-  "usuario": { "id": 1 }
+Este README explica como rodar, como usar, e como o código funciona, camada por camada.
+
+👥 Integrantes do Grupo
+Nome	Contribuições (exemplo)
+Aluno 1	Model, Repository, integração Supabase
+Aluno 2	Controllers e documentação dos endpoints
+Aluno 3	Services e regras de negócio
+Aluno 4	Estrutura do projeto, testes, revisão
+Aluno 5	Configuração do Maven/Swagger
+
+Substituir pelas contribuições reais do grupo.
+
+🛠️ Tecnologias Usadas
+
+Spring Boot — cria a API e gerencia todo o servidor
+
+Spring Web — permite criar rotas HTTP (GET, POST, PUT, DELETE)
+
+Spring Data JPA — facilita salvar e buscar dados no banco usando Java
+
+PostgreSQL (Supabase) — banco de dados externo onde ficam os registros
+
+Maven — gerenciador de dependências e execução
+
+Java 17 — versão mínima exigida para o projeto
+
+📁 Estrutura do Projeto (explicada)
+src/main/java/.../projeto
+ ├── controller/
+ ├── service/
+ ├── repository/
+ ├── model/
+ └── ProjetoApplication.java
+
+✔ controller → “onde ficam os endpoints”
+
+É a camada responsável por receber requisições HTTP.
+Exemplo:
+
+@GetMapping("/livros")
+public List<Livro> listarTodos() { ... }
+
+
+Ela não contém regra de negócio, apenas chama o service.
+
+✔ service → “regra de negócio”
+
+Aqui ficam as validações e decisões da aplicação.
+Exemplo:
+
+public Livro atualizar(Long id, Livro novo){
+    Livro existente = repository.findById(id).orElseThrow();
+    existente.setTitulo(novo.getTitulo());
+    return repository.save(existente);
 }
-```
 
-#### Listar Livros  
-`GET /livros`
 
-#### Buscar Livro por ID  
-`GET /livros/{id}`
+Service não sabe nada sobre HTTP, apenas lógica.
 
-#### Atualizar Livro  
-`PUT /livros/{id}`
+✔ repository → “conexão com o banco”
 
-#### Deletar Livro  
-`DELETE /livros/{id}`
+Faz acesso direto ao banco usando JPA.
 
----
+public interface LivroRepository extends JpaRepository<Livro, Long> {}
 
-### Usuarios
 
-#### Criar Usuário  
-`POST /usuarios`  
-Body:
+O Spring gera automaticamente:
 
-```json
-{
-  "nome": "Otávio",
-  "email": "exemplo@email.com",
-  "senha": "123456"
+findAll()
+
+findById()
+
+save()
+
+deleteById()
+
+✔ model → “entidade da tabela”
+
+Representa a tabela do banco Supabase.
+
+@Entity
+public class Livro {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String titulo;
+    private String autor;
 }
-```
 
-#### Listar Usuários  
-`GET /usuarios`
 
-#### Buscar Usuário por ID  
-`GET /usuarios/{id}`
+Cada atributo vira uma coluna no PostgreSQL.
 
-#### Atualizar Usuário  
-`PUT /usuarios/{id}`
+✔ ProjetoApplication
 
-#### Deletar Usuário  
-`DELETE /usuarios/{id}`
+Classe que inicializa o servidor Spring Boot:
 
----
+@SpringBootApplication
+public class ProjetoApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ProjetoApplication.class, args);
+    }
+}
 
-## Como Rodar o Projeto
+🗃️ Banco de Dados — Supabase
+Como configurar o application.properties:
+spring.datasource.url=jdbc:postgresql://db.<ID>.supabase.co:5432/postgres
+spring.datasource.username=postgres
+spring.datasource.password=SENHA_AQUI
 
-### Clonar o repositório
-```
-git clone https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
-```
-
-### Configurar Banco de Dados  
-Criar um banco no MySQL:
-```
-CREATE DATABASE biblioteca;
-```
-
-### Configurar o `application.properties`
-```
-spring.datasource.url=jdbc:mysql://localhost:3306/biblioteca
-spring.datasource.username=root
-spring.datasource.password=SUASENHA
 spring.jpa.hibernate.ddl-auto=update
-```
+spring.jpa.show-sql=true
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 
-### Rodar o projeto
-Via IDE ou:
-```
-mvn spring-boot:run
-```
+O que cada linha significa:
 
----
+url → endereço do banco no Supabase
 
-## Status do Projeto
-100% funcional — pronto para testes no Postman!
+username/password → credenciais geradas na aba “Project Settings → Database”
+
+ddl-auto=update → cria/atualiza tabelas automaticamente
+
+show-sql=true → mostra no console os comandos SQL executados
+
+dialect → informa que é PostgreSQL
+
+🚀 Como Rodar o Projeto
+1️⃣ Clonar o repositório
+git clone https://github.com/grupo/projeto-api.git
+
+2️⃣ Ajustar credenciais do Supabase
+
+Editar src/main/resources/application.properties
+
+3️⃣ Rodar com Maven Wrapper
+./mvnw spring-boot:run        # Linux/Mac
+mvnw spring-boot:run          # Windows
+
+4️⃣ Testar API
+http://localhost:8080
+
+📚 CRUD Implementado
+
+A seguir, o CRUD da entidade principal.
+Substituir “Livro” pelo domínio escolhido.
+
+➤ 1. Listar todos
+
+GET /api/livros
+
+Como funciona internamente:
+
+Controller chama service
+
+Service chama repository.findAll()
+
+JPA gera o SQL SELECT * FROM livro
+
+Resultado volta em lista JSON
+
+➤ 2. Buscar por ID
+
+GET /api/livros/{id}
+
+Se o ID existir → retorna
+
+Se não existir → lança exceção (404)
+
+➤ 3. Criar
+
+POST /api/livros
+
+Exemplo JSON:
+
+{
+  "titulo": "1984",
+  "autor": "George Orwell"
+}
 
 
+Processo interno:
+
+JSON vira objeto Java (model)
+
+Service valida e chama repository.save()
+
+Hibernate gera INSERT INTO no Supabase
+
+Retorna o objeto criado com ID
+
+➤ 4. Atualizar
+
+PUT /api/livros/{id}
+
+Processo:
+
+Busca registro existente
+
+Atualiza campos válidos
+
+Salva de volta
+
+Hibernate gera UPDATE
+
+➤ 5. Deletar
+
+DELETE /api/livros/{id}
+
+Processo:
+
+Service chama repository.deleteById(id)
+
+Hibernate gera DELETE FROM
+
+📄 Documentação dos Endpoints (Swagger)
+
+Se o projeto usar Swagger:
+
+Acesso:
+http://localhost:8080/swagger-ui/index.html
+
+Dependência:
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+    <version>2.3.0</version>
+</dependency>
 
 
+Swagger gera documentação automática lendo suas controllers.
 
+👨‍💻 Boas Práticas Usadas (pedidas na rubrica)
+✔ Código limpo
 
+Nome de classes claros
+
+Separação correta das camadas
+
+DTOs e validações (caso usem)
+
+✔ Comentários explicativos
+
+Cada classe contém comentários dizendo o propósito
+
+✔ Uso correto de Git
+
+Commits pequenos e claros, exemplo:
+
+feat: criar entidade Livro
+feat: implementar endpoint POST /livros
+fix: corrigir validação de título vazio
+docs: adicionar instruções de execução no README
+
+✔ Participação de cada integrante
+
+Listada na tabela.
