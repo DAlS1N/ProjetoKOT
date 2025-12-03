@@ -25,14 +25,17 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    //Listar todos (GET)
     public List<Usuario> findAll() {
         return usuarioRepository.findAll();
     }
 
+    //Buscar por id (GET /{id})
     public Usuario findByid(int id) {
         return usuarioRepository.findById(id).get();
     }
 
+    //Atualizar (PUT /{id})
     public Usuario AtualizarUsuario(Usuario usuarioNovo, int id) {
 
         return usuarioRepository.findById(id)
@@ -46,6 +49,7 @@ public class UsuarioService {
                 .orElse(null);
     }
 
+    //Deletar (DELETE /{id})
     public void deletarUsuario(int id) {
         usuarioRepository.deleteById(id);
     }
@@ -66,11 +70,12 @@ public class UsuarioService {
         return usuario;
     }
 
+    //Deletar (Get /{email})
     public Usuario buscarPorEmail(String email) {
         return usuarioRepository.findByEmail(email);
     }
 
-
+    //Deletar (pagina)
     public Page<Usuario> listarPaginado(Pageable pageable) {
         return usuarioRepository.findAll(pageable);
     }

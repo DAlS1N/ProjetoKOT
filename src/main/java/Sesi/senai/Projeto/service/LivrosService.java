@@ -51,6 +51,7 @@ public class LivrosService {
         livrosRepository.deleteById(id);
     }
 
+    //listar Por pagina
     public Page<Livros> listarPaginado(Pageable pageable) {
         return livrosRepository.findAll(pageable);
     }
