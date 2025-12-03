@@ -55,6 +55,7 @@ public class UsuarioService {
     }
 
 
+    //Criar (Adicionar Livro no usuario)
     public Usuario adicionarLivroExistente(Integer idUsuario, Integer idLivro) {
 
         Usuario usuario = usuarioRepository.findById(idUsuario)
