@@ -186,34 +186,7 @@ Exemplo presente no projeto:
 
 Usuario findByEmail(String email);
 
-🗄️ 6. Como Rodar Localmente (Supabase + Spring Boot)
-6.1 Criar Banco no Supabase
-
-Acesse https://supabase.com/
-
-Crie um projeto gratuito
-
-Vá em SQL Editor
-
-Crie o banco e as tabelas automaticamente via JPA
-
-6.2 Configurar o application.properties
-spring.datasource.url=jdbc:postgresql://<HOST>.supabase.co:5432/postgres
-spring.datasource.username=postgres
-spring.datasource.password=<SENHA_DO_SUPABASE>
-
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-
-6.3 Rodar o projeto
-No Windows:
-mvnw spring-boot:run
-
-No Linux/Mac:
-./mvnw spring-boot:run
-
-
-API estará disponível em:
+🗄️ 6. API estará disponível em:
 
 👉 http://localhost:9090
 
